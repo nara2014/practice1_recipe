@@ -1,0 +1,211 @@
+// デファイン
+$max-width: 1000px;
+$pic-height: 605px;
+
+// フォント
+@import url("https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c");
+
+// @mixin 関数
+@mixin debug($color) {
+  // border: solid 1px $color;
+}
+/**
+  子要素の absolute & 文字を中央に配置
+*/
+@mixin absCenter($fontSize, $top, $left) {
+  position: absolute;
+  font-size: $fontSize;
+  top: $top;
+  left: $left;
+  transform: translate(-50%, -50%);
+  display: inline;
+  text-align: center;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+body {
+  background-color: rgb(250, 235, 207);
+  margin-right: auto;
+  margin-left: auto;
+}
+.wrapper {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  max-width: $max-width;
+  margin: 0 auto;
+
+  header {
+    color: black;
+    position: relative;
+    .toppic {
+      width: $max-width;
+      height: $pic-height;
+      img {
+        position: absolute;
+        width: 100%;
+        height: $pic-height;
+      }
+      .title {
+        // @include debug(red);
+        @include absCenter(52px, 40%, 50%);
+        text-shadow: 1px 0 1px black;
+      }
+      .sub_title {
+        // @include debug(blue);
+        @include absCenter(25px, 55%, 50%);
+        color: gray;
+        text-shadow: 2px 2px 5px white;
+      }
+    }
+  }
+
+  .container {
+    @include debug(brown);
+    background-color: white;
+    display: flex;
+    padding: 20px 30px;
+    .main {
+      @include debug(green);
+      width: 70%;
+      .title {
+        @include debug(black);
+        margin-top: 10px;
+        font-size: 35px;
+      }
+      hr {
+        border: none;
+        border-top: solid 1px gold;
+        border-bottom: solid 1px gold;
+      }
+      .wrap {
+        @include debug(green);
+        display: flex;
+        .pic {
+          width: 65%;
+          height: 100%;
+          @include debug(blue);
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .info {
+          width: 35%;
+          padding-right: 10px;
+          @include debug(red);
+        }
+      }
+    }
+    .side {
+      @include debug(rgb(18, 20, 18));
+      width: 30%;
+      .wrap {
+        @include debug(pink);
+        margin-top: 5px;
+        .title {
+          @include debug(red);
+          font-size: 26px;
+          color: white;
+          background: orange;
+          margin: 5px 0px 5px 10px;
+          padding: 5px 0px 5px 10px;
+        }
+        .list {
+          @include debug(blue);
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  footer {
+    // @include debug(red);
+    position: relative;
+    background: gold;
+    height: 150px;
+    .base {
+      // @include debug(blue);
+      position: absolute;
+      background-color: orange;
+      color: #eeeeee;
+      top: 5%;
+      left: 50%;
+      transform: translate(-50%, 0%);
+      // text-align: center;
+      width: 100%;
+      height: 95%;
+      .text {
+        // @include debug(black);
+        @include absCenter(18px, 50%, 50%);
+      }
+    }
+  }
+
+
+
+  @media screen and (min-width: 1024px) {
+    /*　画面サイズが1024pxからはここを読み込む　*/
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    /*　画面サイズが768pxから1024pxまではここを読み込む　*/
+    .container {
+      flex-direction: column;
+      .main,
+      .side {
+        width: 100%;
+        .wrap {
+          .title {
+            margin: 0px 0px 0px 0px;
+          }
+        }
+      }
+    }
+    footer .base {
+      background-color: red;
+    }
+  }
+
+
+  @media screen and (max-width: 767px) {
+    /*　画面サイズが480pxからはここを読み込む　*/
+    header .toppic {
+      img{
+        height: 100%;
+      }
+      .title{
+        font-size: 30px;
+      }
+      .sub_title{
+        font-size: 20px;
+      }
+    }
+    .container {
+      flex-direction: column;
+      .main {
+        width: 100%;
+        .wrap {
+          display: block;
+          .pic {
+            width: 100%;
+          }
+          .info {
+            width: 100%;
+          }
+        }
+      }
+      .side {
+        width: 100%;
+        .wrap {
+          .title {
+            margin: 0px 0px 0px 0px;
+          }
+        }
+      }
+    }
+    footer .base {
+      background-color: pink;
+    }
+  }
+
+}
